@@ -1,17 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom/client";
+//import App from "./App";
+import App from "./App"; //!importamos una funcion o componente
+//import {componente} from 'componente' exportamos algun componente de los que hay en el archivo componente.
+import "./index.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+//*creamos una ruta raiz, donde le diremos a react donde desplegaremos nuestra aplicacion
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+/*
+* root.render(elemento hijo) Usamos el metodo render de root, donde le diremos que elemento hijo colocaremos, en pocas palabras, le estamos diciendo que vamos a renderizar nuestra aplicacion ahi o que esa va a ser nuestra aplicacion que veremos
+    root.render(<h1>hola mundo</h1>);
+                    o
+    root.render(<App />); 
+    
+TODO: Mayor mente colocamos nuestra aplicacion en un componente llamado: App y en el archivo index colocamos las configuracion o declaramos el inicio de nuestra app.
+*/
+
+root.render(<App />);
