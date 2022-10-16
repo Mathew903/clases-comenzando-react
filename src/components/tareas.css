@@ -1,0 +1,21 @@
+.container {
+  background-color: #202020;
+  color: #fff;
+  padding: 20px;
+  margin: 20px;
+}
+
+.title {
+  font-weight: lighter;
+}
+
+.parrafo {
+  font-size: 2rem;
+}
+
+.bg-red {
+  background-color: red;
+}
+.bg-green {
+  background-color: green;
+}

@@ -1,77 +1,66 @@
-//import Saludo from "./components/Saludo"; 
-import Button from "./components/Button";
+//import Saludo from "./components/Saludo";
+// import Button from "./components/Button";
+// import Tareas from "./components/Tareas";
+// import {Mensaje} from "./components/Mensaje";
+// import Post from "./components/Post";
+import { useState, useEffect } from "react";
 
 //Declaracion de nuestra funcion o componente
+
+/*
+const Contador = () => {
+  const numero = 0;
+  const [state, setState] = useState(numero);
+  return (
+    <div>
+      <h2>Contador: {state}</h2>
+      <button onClick={() => setState(state + 1)}>Incrementar</button>
+      <button onClick={() => setState(0)}>Resetear</button>
+      <button onClick={() => setState(state - 1)}>Decrementar</button>
+    </div>
+  );
+};
+*/
 const App = () => {
-	/* declaracion de tipos de datos, forma de usarlos en jsx y su manipulacion
-		const nombre = "Matias"
+  /*const handleChange = (e) => {
+		console.log(e.target.value)
+	}
+	
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		console.log("enviando...")
+	}*/
+	const [clicks, setClicks] = useState({right: 0, left: 0});
+	const [mensaje, setMensaje] = useState("");
 
-		const obj = {
-			name:"matias",
-			edad: 18
-		}
+	let cantClicks = clicks.right + clicks.left
 
-		const juegos = ["Call of Duty", "Fornite", "Free Fire"]
+	const getData = async () => {
+		const res = await fetch("https://jsonplaceholder.typicode.com/posts")
+		const data = await res.json();
+		console.log(data)
+	}
 
-		const num = 123123;
-	*/
+	useEffect(() => {
+		getData()
+	}, [])
+	
+  //Retornamos nuestro JSX, interfaz del componente o cuerpo 
+  return (
+    <>
+    <h1 style={{ color: "red" }}>{cantClicks}</h1>
+    <h2 style={{ color: "red" }}>{mensaje}</h2>
+	{/* <Contador /> */}
 
-	//Retornamos nuestro JSX, interfaz del componente o cuerpo
-	return (
-		<>
-			{/* Esta es la forma de crear comentarios en componentes */}
-			{/* {con las llaves, lo que le estamos diciendo a React es que vamos a interpretar logica js}  
-
-				{variable}
-				{condiciones}
-				{bucles}
-
-				{nombre} => aca le estamos diciendo que el valor va a ser de la variable "nombre"
-				nombre => esto es un texto normal, un string cualquiera
-				
-				Ejemplo: 
-
-				<h1>{obj.name}</h1>
-				<p>{obj.edad}</p>
-				<p>{12312312}</p>
-				<p>{juegos[0]}</p>
-			
-			*/}
-
-			{/* 
-			
-				Los componentes permiten separar la interfaz de usuario en piezas independientes, reutilizables y pensar en cada pieza de forma aislada.
-
-				Conceptualmente, los componentes son como las funciones de JavaScript. Aceptan entradas arbitrarias (llamadas “props”) y retornan elementos de React que describen lo que debe aparecer en la pantalla.
-
-				La forma más sencilla de definir un componente es escribir una función de JavaScript:
-
-				function Welcome(props){
-					return <h1>Hello, {props.name}</h1>;
-				}
-
-				Nota: Comienza siempre los nombres de componentes con una letra mayúscula.
-				React trata los componentes que empiezan con letras minúsculas como etiquetas del DOM. Por ejemplo, <div /> representa una etiqueta div HTML pero <Welcome /> representa un componente y requiere que Welcome esté definido.
-
-				A los componentes tambien se les puede pasar o crear propiedades para poder trabajr con ciertos valores o datos, como tambien para modificar ciertos datos o reutilizarlos para un determinado fin. Ejemplo:
-			
-				<Saludo 
-					nombre="Matias" 
-					casado={false} 
-					dinero={20000} 
-					direccion={{calle: "Lima", numero: 1323, ciudad: "Buenos aires"}}
-				/> 
-
-				De esta manera nosotros podemos pasarle muchas propiedades y poder con un mismo componente manipular muchas datos, reutilizando esta logica.
-			*/}
-
-
-			<Button color="#cc4" fontSize="14" value="click me" />
-			<Button color="#5fc" fontSize="20" value="apretame" />
-			<Button color="#f41" fontSize="17" value="presioname" />
-			<Button />
-		</>
-	);
+	<input type="text" onChange={(e) => setMensaje(e.target.value)}/>
+	{/* <input type="text" onChange={(e) => setValor(e.target.value)}/> */}
+	<hr />
+	{clicks.left}
+	<button onClick={() => setClicks({...clicks, left: clicks.left + 1, cantClicks: clicks.cantClicks + 1})}>left</button>
+	{/* <button onClick={() => setClicks({...clicks, right: clicks.right + 1, cantClicks: clicks.cantClicks + 1})}>right</button>
+	{clicks.right} */}
+    </>
+  );
 };
 
 export default App; //exportamos un unico componente o funcion
